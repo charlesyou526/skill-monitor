@@ -1,0 +1,6 @@
+EMAIL_USER=yoursendemail@gmail.com
+EMAIL_PASS=xqcf *** *** ****
+EMAIL_FROM=yoursendemail@gmail.com
+EMAIL_TO=backup@example.com,admin@example.com
+SMTP_SERVER=smtp.gmail.com
+SMTP_PORT=465
