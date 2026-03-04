@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>🔍 OpenClaw Skill Monitor</title>
+  <style>
+    body { font-family: system-ui; max-width: 1200px; margin: 0 auto; padding: 20px; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin: 10px 0; }
+    .skill-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; }
+    .count { font-weight: bold; color: #2196F3; }
+    .timestamp { color: #666; font-size: 0.9em; }
+    #stats { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>🔍 OpenClaw Skill Monitor</h1>
+  <div class="card">
+    <h3>📊 Live Statistics</h3>
+    <div id="stats">Loading...</div>
+  </div>
+  
+  <script>
+    async function fetchStats() {
+      try {
+        const res = await fetch('/api/stats');
+        const data = await res.json();
+        renderStats(data);
+      } catch (e) {
+        document.getElementById('stats').innerHTML = '⚠️ Waiting for monitor...';
+      }
+    }
+    
+    function renderStats(stats) {
+      const container = document.getElementById('stats');
+      if (Object.keys(stats).length === 0) {
+        container.innerHTML = '🟡 No skills invoked yet';
+        return;
+      }
+      
+      let html = '';
+      for (const [skill, info] of Object.entries(stats)) {
+        html += `
+          <div class="skill-row">
+            <span><strong>${skill}</strong></span>
+            <span>
+              <span class="count">${info.count} calls</span>
+              <span class="timestamp">• Last: ${info.last_call ? new Date(info.last_call).toLocaleTimeString() : 'N/A'}</span>
+            </span>
+          </div>
+        `;
+      }
+      container.innerHTML = html;
+    }
+    
+    // Auto-refresh every 10s / 每10秒自动刷新
+    fetchStats();
+    setInterval(fetchStats, 10000);
+  </script>
+</body>
+</html>

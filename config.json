@@ -1,0 +1,24 @@
+{
+  "skill_log_dir": "/tmp",
+  "gateway_log": "$HOME/.openclaw/logs/gateway.log",
+  "output_dir": "$HOME/.openclaw/tools/skill-monitor/logs",
+  
+  "filters": {
+    "skills": ["real_time", "weather"],  
+    "min_interval_sec": 5,                
+    "exclude_debug_fields": true          
+  },
+  
+  "notifications": {
+    "enabled": true,
+    "webhook_url": "https://your-webhook.example.com/skill-alert",  
+    "sound": true  
+  },
+  
+  "dashboard": {
+    "enabled": true,
+    "port": 8899,
+    "auto_open": true,
+    "refresh_interval_sec": 10
+  }
+}

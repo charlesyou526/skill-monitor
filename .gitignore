@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Environment
+.env
+.venv
+
+# Logs
+logs/
+*.log
+stats_*.json
+current_stats.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backup
+*.bak
+*~
